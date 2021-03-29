@@ -18,11 +18,11 @@ use App\Http\Controllers\DataController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('biodata',DataController::class);
+Route::resource('biodata6A',DataController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 Route::get('/home',[HomeController::class,'index'])->name('index');
 Route::get('/dasboard',[HomeController::class,'dasboard'])->name('dasboard');
-Route::get('/awe',[HomeController::class,'awe'])->name('awe');
+Route::get('/biodatasiswa',[HomeController::class,'awe'])->name('kelas6a');

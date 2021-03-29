@@ -17,7 +17,7 @@ class DataController extends Controller
     {
         $bio=Bio::all();
         $title="Biodata";
-        return view('admin.biodata', compact('title','bio'));
+        return view('admin.Kelas6a', compact('title','bio'));
     }
 
     /**
@@ -46,13 +46,14 @@ class DataController extends Controller
         ];
         $validasi=$request->validate([
             'nama'=>'required|max:255',
+            'nis'=>'required',
             'alamat'=>'required|max:255',
             'tanggal_lahir'=>'date',
             'j_kelamin'=>'required'
         ]);
         $validasi['user_id']=Auth::id();
         Bio::create($validasi);
-        return redirect('biodata')->with('success','Data Berhasil Tersimpan');
+        return redirect('biodata6A')->with('success','Data Berhasil Tersimpan');
         }
 
     /**
@@ -95,13 +96,14 @@ class DataController extends Controller
         ];
         $validasi=$request->validate([
             'nama'=>'required|max:255',
+            'nis'=>'required',
             'alamat'=>'required|max:255',
             'tanggal_lahir'=>'date',
             'j_kelamin'=>'required'
         ]);
         $validasi['user_id']=Auth::id();
         Bio::where('id',$id)->update($validasi);
-        return redirect('biodata')->with('success','Data Berhasil Terupdate');
+        return redirect('biodata6A')->with('success','Data Berhasil Terupdate');
     }
 
     /**
@@ -117,6 +119,6 @@ class DataController extends Controller
             $bio=Bio::find($bio->id);
             Bio::where('id',$id)->delete();
         }
-        return redirect('biodata')->with('success','Data Berhasil Terhapus');
+        return redirect('biodata6A')->with('success','Data Berhasil Terhapus');
     }
 }

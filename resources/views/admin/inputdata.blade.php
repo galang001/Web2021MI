@@ -1,5 +1,7 @@
-<x-awetemplate-layout>     
-<form action="{{(isset($bio))?route('biodata.update',$bio->id):route('biodata.store')}}" method="POST">
+<x-awetemplate-layout>
+<title>Input Biodata Siswa</title>
+<h1 class="text-3xl text-black pb-6">Biodata Siswa</h1>      
+<form action="{{(isset($bio))?route('biodata6A.update',$bio->id):route('biodata6A.store')}}" method="POST">
     @csrf
     @if(isset($bio))
       @method('PUT')
@@ -11,6 +13,13 @@
                 <label for="nama" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
                 <input type="text" name="nama" id="nama" value="{{(isset($bio))?$bio->nama:old('nama')}}" class="@error('nama') border-red-500 @enderror mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 <div class="text-xs text-red-600">@error('nama'){{$message}}@enderror</div>
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <label for="nis" class="block text-sm font-medium text-gray-700">NIS</label>
+                <input type="text" name="nis" id="nis" value="{{(isset($bio))?$bio->nis:old('nis')}}" class="@error('nis') border-red-500 @enderror mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <div class="text-xs text-red-600">@error('nis'){{$message}}@enderror</div>
               </div>
               <div class="col-span-6 sm:col-span-3">
               </div>
