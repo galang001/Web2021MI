@@ -1,7 +1,7 @@
 <x-awetemplate-layout>
 <title>Input Biodata Siswa</title>
-<h1 class="text-3xl text-black pb-6">Biodata Siswa</h1>      
-<form action="{{(isset($bio))?route('biodata6A.update',$bio->id):route('biodata6A.store')}}" method="POST">
+<h1 class="text-3xl text-black pb-6">Biodata Siswa</h1>
+<form action="{{(isset($bio))?route('biodata.update',$bio->id):route('biodata.store')}}" method="POST">
     @csrf
     @if(isset($bio))
       @method('PUT')
@@ -27,9 +27,23 @@
               <div class="col-span-6 sm:col-span-3">
                 <label for="j_kelamin" class="block text-sm font-medium text-gray-700">Jenis Kelamin</label>
                 <select id="j_kelamin" name="j_kelamin" class="mt-1 block w-1/4 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                  <option value="Laki-Laki" {{ old('j_kelamin') == 1? 'selected' : '' }}>Laki-Laki</option>
-                  <option value="Perempuan" {{ old('j_kelamin') == 2? 'selected' : '' }}>Perempuan</option>
-                </select>
+                  @foreach ($jkel as $item)
+                      <option value="{{$item->id_jkel}}" >{{$item->jkel}}</option>
+                  @endforeach
+              </select>
+              </div>
+
+              <div class="">
+
+              </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <label for="kd_kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
+                <select id="kd_kelas" name="kd_kelas" class="mt-1 block w-1/4 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                  @foreach ($kelas as $item)
+                      <option value="{{$item->id_kelas}}" >{{$item->nama_kelas}}</option>
+                  @endforeach
+              </select>
               </div>
 
               <div class="col-span-6 sm:col-span-4">

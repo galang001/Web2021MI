@@ -1,7 +1,7 @@
 <x-awetemplate-layout>
-<title>Biodata Siswa Kelas 6A</title>
-<h1 class="pb-3"><a href="javascript:window.history.back();" class="underline">Kembali</a></h1>   
-<h1 class="text-3xl text-black pb-6">Biodata Siswa</h1> 
+<title>Biodata Siswa</title>
+<!-- <h1 class="pb-3"><a href="javascript:window.history.back();" class="underline">Kembali</a></h1> -->
+<h1 class="text-3xl text-black pb-6">Biodata Siswa</h1>
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="flex flex-col">
   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -23,6 +23,9 @@
                 Jenis Kelamin
               </th>
               <th scope="col" class="px-7 py-3 text-left text-xs font-semibold font-medium uppercase tracking-wider">
+                Kelas
+              </th>
+              <th scope="col" class="px-7 py-3 text-left text-xs font-semibold font-medium uppercase tracking-wider">
                 Alamat
               </th>
               <th scope="col" class="px-9 py-3 text-left text-xs font-semibold font-medium uppercase tracking-wider">
@@ -38,44 +41,50 @@
                 </th>
             </tr>
           </thead>
-          <tbody class="bg-white divide-y divide-gray-200 text-left">
+          <tbody class="bg-white divide-y divide-gray-400 text-left">
           <div class=" items-center justify-end ">
-        <a href="{{route('biodata6A.create')}}" class=" mb-3 whitespace-nowrap inline-flex items-center justify-center px-1 py-1 border border-transparent rounded-md shadow-sm text-base font-small text-white bg-indigo-600 hover:bg-indigo-700">
+        <a href="{{route('biodata.create')}}" class=" mb-3 whitespace-nowrap inline-flex items-center justify-center px-1 py-1 border border-transparent rounded-md shadow-sm text-base font-small text-white bg-indigo-600 hover:bg-indigo-700">
           Tambah
         </a>
       </div>
+            @if ($bio->count() == 0)
             <tr>
+                <td colspan="5">No Data to display.</td>
+            </tr>
+            @endif
             <div class="flex items-center">
-            <?php $no=1;?>
               @foreach ($bio as $item)
-                  <td class="px-5 py-2 text-left font-medium">{{$no}}</td>
+                  <td class="px-5 py-2 text-left font-medium">{{ (($bio->currentPage() * 5) - 5) + $loop->iteration  }}</td>
                   <td class="px-8 py-3 text-left font-medium">{{$item->nama}}</td>
                   <td class="px-8 py-3 text-left font-medium">{{$item->nis}}</td>
-                  <td class="px-8 py-3 text-left font-medium">{{$item->j_kelamin}}</td>
+                  <td class="px-8 py-3 text-left font-medium">{{$item->jkel}}</td>
+                  <td class="px-8 py-3 text-left font-medium">{{$item->nama_kelas}}</td>
                   <td class="px-8 py-3 text-left font-medium">{{$item->alamat}}</td>
                   <td class="px-8 py-3 text-left font-medium">{{$item->tanggal_lahir}}</td>
                   <td>
-                  <form action="{{route('biodata6A.destroy',$item->id)}}"  method="POST">
+                  <form action="{{route('biodata.destroy',$item->id)}}"  method="POST">
                     @csrf
                     @method('DELETE')
-                    <td class="text-left font-medium"><a href="{{route('biodata6A.edit',$item->id)}}" class="btn btn-xs p-2 rounded bg-blue-200 m-3 hover:bg-blue-600 hover:text-white">Edit</a></td>
+                    <td class="text-left font-medium"><a href="{{route('biodata.edit',$item->id)}}" class="btn btn-xs p-2 rounded bg-blue-200 m-3 hover:bg-blue-600 hover:text-white">Edit</a></td>
                     <td class="text-left font-medium"><button class="btn btn-xs p-2 rounded bg-red-200 m-3 hover:bg-red-800 hover:text-white">Delete</button></td>
                     </form>
                     </td>
             </div>
             </tr>
-              <?php $no++; ?>
               @endforeach
             </tr>
 
             <!-- More items... -->
             </tbody>
         </table>
+        {{ $bio->links() }}
+
       </div>
     </div>
   </div>
 </div>
 
 
- 
+
+
 </x-awetemplate-layout>

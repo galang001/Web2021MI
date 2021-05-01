@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-        
+
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <style>
@@ -46,9 +46,9 @@
 
 <div class="w-full flex flex-col h-screen overflow-y-hidden">
     <!-- Desktop Header -->
-    <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
-        <div class="w-1/2"></div>
-        <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
+    <header class="w-full items-center hidden sm:flex">
+        <div class="w-100%"></div>
+        <div x-data="{ isOpen: false }" class="relative w-screen flex justify-end">
         @livewire('navigation-menu')
         </div>
     </header>

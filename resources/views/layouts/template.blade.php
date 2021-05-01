@@ -49,9 +49,9 @@
 
 <div class="w-full flex flex-col h-screen overflow-y-hidden">
     <!-- Desktop Header -->
-    <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
-        <div class="w-1/2"></div>
-        <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
+    <header class="w-full items-center hidden sm:flex">
+        <div class="w-100%"></div>
+        <div x-data="{ isOpen: false }" class="relative w-screen flex justify-end">
         @livewire('navigation-menu')
         </div>
     </header>
@@ -103,11 +103,11 @@
         </main>
 
         <footer class="border-t border-gray-500 h-10 w-full bg-gray-800 text-right text-xs text-white p-2 bottom-0">
-            MIT Mardlatillah 2021   | Design Built by 
+            MIT Mardlatillah 2021   | Design Built by
             <a target="_blank" href="https://davidgrzyb.com" class="underline">David Grzyb</a>.
         </footer>
     </div>
-    
+
 </div>
 
 <!-- AlpineJS -->

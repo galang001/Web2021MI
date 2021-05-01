@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\DropdownsController;
+use App\Http\Livewire\SiswaLw;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +17,24 @@ use App\Http\Controllers\DataController;
 |
 */
 
+Route::get('siswa' , SiswaLw::class);
+
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('biodata6A',DataController::class);
+Route::resource('biodata',DataController::class);
+Route::resource('jkel',DataController::class);
+
+// Route::get('/coba', [DropdownsController::class,'index'])
+//     ->name('admin.index');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+    return view('dashboard');})->name('dashboard');
+
+// Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->get('/admin/dashboard', function () {
+//     return view('admin.dashboard');})->name('admin.dashboard');
+
 Route::get('/home',[HomeController::class,'index'])->name('index');
 Route::get('/dasboard',[HomeController::class,'dasboard'])->name('dasboard');
-Route::get('/biodatasiswa',[HomeController::class,'awe'])->name('kelas6a');
+Route::get('/biodatasiswa',[DataController::class,'index'])->name('kelas6a');
+// Route::get('biodatapage', [DataController::class, 'pagination']);

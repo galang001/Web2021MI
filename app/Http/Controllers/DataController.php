@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bio;
+use App\Models\Jkel;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,10 +17,19 @@ class DataController extends Controller
      */
     public function index()
     {
-        $bio=Bio::all();
+        $bio=Bio::
+          join('jkels', 'bios.j_kelamin', '=', 'jkels.id_jkel')
+          ->join('kelas', 'bios.kd_kelas', '=', 'kelas.id_kelas')
+        ->paginate(5);
         $title="Biodata";
         return view('admin.Kelas6a', compact('title','bio'));
     }
+
+    // public function pagination ()
+    // {
+    //   $data = Bio::paginate(5);
+    //   return view('admin.kelas6a', compact('data'));
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -27,8 +38,10 @@ class DataController extends Controller
      */
     public function create()
     {
+        $jkel=Jkel::all();
+        $kelas=Kelas::all();
         $title="Input Data";
-        return view('admin.inputdata', compact('title'));
+        return view('admin.inputdata', compact('title','jkel','kelas'));
     }
 
     /**
@@ -49,11 +62,12 @@ class DataController extends Controller
             'nis'=>'required',
             'alamat'=>'required|max:255',
             'tanggal_lahir'=>'date',
-            'j_kelamin'=>'required'
+            'j_kelamin'=>'required',
+            'kd_kelas'=>'required',
         ]);
         $validasi['user_id']=Auth::id();
         Bio::create($validasi);
-        return redirect('biodata6A')->with('success','Data Berhasil Tersimpan');
+        return redirect('biodata')->with('success','Data Berhasil Tersimpan');
         }
 
     /**
@@ -76,8 +90,10 @@ class DataController extends Controller
     public function edit($id)
     {
         $bio=Bio::find($id);
+        $jkel=Jkel::all();
+        $kelas=kelas::all();
         $title="Edit Biodata";
-        return view('admin.inputdata', compact('title','bio'));
+        return view('admin.inputdata', compact('title','bio','jkel','kelas'));
     }
 
     /**
@@ -99,11 +115,12 @@ class DataController extends Controller
             'nis'=>'required',
             'alamat'=>'required|max:255',
             'tanggal_lahir'=>'date',
-            'j_kelamin'=>'required'
+            'j_kelamin'=>'required',
+            'kd_kelas'=>'required',
         ]);
         $validasi['user_id']=Auth::id();
         Bio::where('id',$id)->update($validasi);
-        return redirect('biodata6A')->with('success','Data Berhasil Terupdate');
+        return redirect('biodata')->with('success','Data Berhasil Terupdate');
     }
 
     /**
@@ -119,6 +136,6 @@ class DataController extends Controller
             $bio=Bio::find($bio->id);
             Bio::where('id',$id)->delete();
         }
-        return redirect('biodata6A')->with('success','Data Berhasil Terhapus');
+        return redirect('biodata')->with('success','Data Berhasil Terhapus');
     }
 }
