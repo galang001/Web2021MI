@@ -62,10 +62,10 @@
                   <td class="px-8 py-3 text-left font-medium">{{$item->alamat}}</td>
                   <td class="px-8 py-3 text-left font-medium">{{$item->tanggal_lahir}}</td>
                   <td>
-                  <form action="{{route('biodata.destroy',$item->id)}}"  method="POST">
+                  <form action="{{url('/destroy'.$item->id)}}"  method="POST">
                     @csrf
                     @method('DELETE')
-                    <td class="text-left font-medium"><a href="{{route('biodata.edit',$item->id)}}" class="btn btn-xs p-2 rounded bg-blue-200 m-3 hover:bg-blue-600 hover:text-white">Edit</a></td>
+                    <td class="text-left font-medium"><a href="{{route('biodata.edit',$item->id_user)}}" class="btn btn-xs p-2 rounded bg-blue-200 m-3 hover:bg-blue-600 hover:text-white">Edit</a></td>
                     <td class="text-left font-medium"><button class="btn btn-xs p-2 rounded bg-red-200 m-3 hover:bg-red-800 hover:text-white">Delete</button></td>
                     </form>
                     </td>

@@ -1,7 +1,7 @@
 <x-awetemplate-layout>
 <title>Input Biodata Siswa</title>
 <h1 class="text-3xl text-black pb-6">Biodata Siswa</h1>
-<form action="{{(isset($bio))?route('biodata.update',$bio->id):route('biodata.store')}}" method="POST">
+<form action="{{(isset($bio))?route('biodata.update',$bio->id_user):route('biodata.store')}}" method="POST">
     @csrf
     @if(isset($bio))
       @method('PUT')

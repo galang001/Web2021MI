@@ -17,7 +17,7 @@ use App\Http\Livewire\SiswaLw;
 |
 */
 
-Route::get('siswa' , SiswaLw::class);
+Route::get('/siswa' , SiswaLw::class)->name('siswalw');
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,5 +36,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/home',[HomeController::class,'index'])->name('index');
 Route::get('/dasboard',[HomeController::class,'dasboard'])->name('dasboard');
+// Route::get('/edit',[DataController::class,'edit'])->name('edit');
 Route::get('/biodatasiswa',[DataController::class,'index'])->name('kelas6a');
 // Route::get('biodatapage', [DataController::class, 'pagination']);

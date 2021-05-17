@@ -38,20 +38,23 @@
             <i class="fas fa-home mr-3" aria-hidden="true"></i>
             Dashboard
         </a>
-        <a href="{{route('kelas6a')}}" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
+        <a href="{{route('kelas6a')}}" class="flex items-center text-white py-4 pl-6 nav-item">
             <i class="fa fa-users mr-3" aria-hidden="true"></i>
             Biodata Siswa
+        </a>
+        <a href="{{route('siswalw')}}" class="flex items-center text-white py-4 pl-6 nav-item">
+            <i class="fa fa-users mr-3" aria-hidden="true"></i>
+            Biodata Siswa Livewire
         </a>
 </aside>
 
 <div class="w-full flex flex-col h-screen overflow-y-hidden">
     <!-- Desktop Header -->
-    <header class="w-full items-center hidden sm:flex">
+    <!-- <header class="w-full items-center hidden sm:flex">
         <div class="w-100%"></div>
         <div x-data="{ isOpen: false }" class="relative w-screen flex justify-end">
-        @livewire('navigation-menu')
         </div>
-    </header>
+    </header> -->
 
     <!-- Mobile Header & Nav -->
     <header x-data="{ isOpen: false }" class="w-full bg-sidebar py-5 px-6 sm:hidden">

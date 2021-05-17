@@ -8,6 +8,7 @@ use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class DataController extends Controller
 {
     /**
@@ -87,9 +88,9 @@ class DataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_user)
     {
-        $bio=Bio::find($id);
+        $bio=Bio::find($id_user);
         $jkel=Jkel::all();
         $kelas=kelas::all();
         $title="Edit Biodata";
@@ -103,7 +104,7 @@ class DataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_user)
     {
         $message=[
             'required'=>'Kolom :attribute Harus Lengkap',
@@ -119,7 +120,7 @@ class DataController extends Controller
             'kd_kelas'=>'required',
         ]);
         $validasi['user_id']=Auth::id();
-        Bio::where('id',$id)->update($validasi);
+        Bio::where('id_user',$id_user)->update($validasi);
         return redirect('biodata')->with('success','Data Berhasil Terupdate');
     }
 
